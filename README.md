@@ -91,8 +91,7 @@ In our example, we’ll leverage the AWS Service to integrate our trigger with A
 *Figure 4. AWS Service Configuration*
 
 Once configured, the service may be accessed via calls from Stitch serverless functions. Here’s an example of a function referencing our newly configured AWS Service. 
-
-```javascript
+<pre><code class="line-numbers" data-highlight-lines="1-3,5,7,9">
 exports = function(event){
  const awsService = context.services.get('aws');
  console.log(JSON.stringify(event.fulldocument));
@@ -109,10 +108,12 @@ catch(error){
   console.log(JSON.parse(error));
 }
 };
-```
+</pre>
 *Example Stitch Function Calling AWS Kinesis Service*
 
-Your application interacts with MongoDB in the same manner it would normally, connecting, capturing user interactions and inserting documents into a collection in a database on MongoDB Atlas. Since we've configured MongoDB Stitch Database Triggers to take action upon each Update, Insert, or Replace our function will be fired when the change event occurs.
+Note in the fo
+
+When you leverage MongoDB Atlas and MongoDB Stitch, you our application interacts with MongoDB in the same manner it would normally, connecting, capturing user interactions and inserting documents into a collection in a database on MongoDB Atlas. Since we've configured MongoDB Stitch Database Triggers to take action upon each Update, Insert, or Replace our function will be fired when the change event occurs.
 
 
 
