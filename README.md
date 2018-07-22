@@ -3,12 +3,16 @@
 ## Integrating MongoDB and Amazon Kinesis
 
 ### Steaming Data
-Every day, millions of people visit websites and interact with applications all across the Internet. Their virtual footprints tell a story that can be incredibly valuable to purveyors of information or goods for sale on the Internet. As users visit a web site, and interact with the content clicking links, viewing content and maybe event purchasing a product, the stream of click data is compiled and sent to a log file, stored in a database or possibly added to a data stream. This data is a perfect example of streaming data. There are many other examples, across every industry. Streaming data differs from batch in the speed with which you’re able to derive insight, and therefore value from the data. With batch oriented data collection and processing, processing is performed periodic basis typically with gaps between execution cycles. Streaming data is analyzed in real-time using the concept of windows into the data.
+Every day, millions of people visit websites and interact with applications all across the Internet. Their virtual footprints tell a story that can be incredibly valuable. As users interact with the content clicking links, viewing products and maybe event purchasing a product, the stream of click data is compiled and sent to a log file, stored in a database or possibly added to a data stream. This is just one example of streaming data. There are many other examples, across virtually every industry. 
 
-More and more businesses are leveraging tools to capture data in real-time in an effort to derive increased value. In this article, I’ll discuss some possible use cases for streaming data, some tools commonly used to help derive value from the data and a potential architecture that combines the best features of streaming data management in addition to storing the data durably without incurring the operational overhead associated with deploying and managing an on-premise database solution.
+Stream processing differs from batch processing in the speed with which you’re able to derive insight, and therefore value from the data. With batch oriented data collection and reporting, processing is performed on a periodic basis typically with gaps between execution cycles. With stream processing, streaming data is analyzed in real-time using the concept of windows into the data. 
+
+More and more businesses are leveraging modern tools to analyze streaming data in real-time rather than having to wait for the data to settle into batches.  This is because over time, the insights become stale and lose value.  Consider the example of streaming transactions in a credit card processing use case.  The value of analyzing the data and detecting anomalies is extremely high within seconds, and minutes of the event whereas, in several days, there’s likely virtually zero value in that specific data.
 
 ![Value of Data Over Time](https://i.imgur.com/K21Vrl1.png "Figure 1. Value of Data Over Time")
 *Figure 1. Value of Data Over Time*
+
+In this article, I’ll discuss some possible use cases for stream processing, some tools commonly used to help derive value from the data and a potential architecture that combines the best features of streaming data management in addition to storing the data durably without incurring the operational overhead associated with deploying and managing an on-premise database solution.
 
 ### Amazon Kinesis
 Streaming solutions such as Amazon Kinesis enable you to minimize the time and cost associated with capturing and taking action on high volumes of incoming data.
@@ -37,8 +41,8 @@ MongoDB Stitch is built into MongoDB Atlas and provides a serverless platform th
  * Third Party Service Integration: Service calls and database actions can be composed with each other inside functions. Here we use data from MongoDB to decide which users to send a text to.
  * Integrated Access Rules: Declaratively control which fields a user can access by defining simple JSON rules or JavaScript functions. Grant others access to approved aggregations while maintaining data privacy.
  * Functions: Run your JavaScript code server-side, within the Stitch backend. Stitch transparently scales to meet your usage.
- * MongoDB + Atlas + Stitch + Amazon Kinesis = Intelligent, Durable Steams
 
+### MongoDB + Atlas + Stitch + Amazon Kinesis = Intelligent, Durable Steams
 Let’s look at an example scenario in which a stream of data is being generated as a result of actions users take on a web site. 
 
 This could be clickstream data from a web app, log data from a log collection agent, or whatever data is being generated at high volumes, at high velocity. Let’s assume we want to produce streaming analytics on this data in addition to retaining durable, enriched data within MongoDB.  Some examples of this type of processing may include Cart Abandonment, Product Recommendations or even Credit Card Fraud detection.
