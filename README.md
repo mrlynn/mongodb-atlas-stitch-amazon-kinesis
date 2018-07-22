@@ -25,7 +25,7 @@ So then, what if your use case requires management of a high volume of incoming 
 
 ### MongoDB Atlas and Stitch
 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
- provides all of the features and benefits of MongoDB, without the operational overhead required for any application. MongoDB Atlas is available on demand through and billed on an hourly basis, letting you focus on the high value tasks associated with developing and deploying applications rather than managing and operating the database.
+ provides all of the features and benefits of MongoDB, without the operational overhead required when you run MongoDB on your own. MongoDB Atlas is available on demand through and billed on an hourly basis, letting you focus on the high value tasks associated with developing and deploying applications rather than managing and operating the database.
 
 It’s easy to get started. Simply select the instance size, region, and features that meet your application requirements and within minutes your cluster environment is up and running and ready to be connected to your application.
 
@@ -48,17 +48,17 @@ In our solution, we’ll want to ensure that the data is stored durably, and sec
 ![MongoDB and Kinesis](https://i.imgur.com/h0lzjAD.png "Figure 2. MongoDB Kinesis Architecture")
 *Figure 2. MongoDB Kinesis Architecture*
 
-MongoDB Stitch, the serverless platform is built into MongoDB Atlas and enables us to do the following:
+MongoDB Stitch, the serverless platform is built into MongoDB Atlas and enables you to do the following:
 
-Store: Reliably, securely store the incoming data into MongoDB in a Database and Collection in MongoDB Atlas.
-React: Trigger on incoming events (updates, inserts, deletes) to the database, and collection and update an additional set of data in another collection.
-Enrich: Since Stitch gives seamless access to the database and collections in context, its easy to leverage the data passed from a database event trigger to enrich other collections or documents -- producing materialized views or aggregations as data enters the database.
-Integrate: Leverage serverless functions to integrate with third party services, in this case Kinesis.
+ * *Store:* Reliably, securely store the incoming data into MongoDB in a Database and Collection in MongoDB Atlas.
+ * *React:* Trigger on incoming events (updates, inserts, deletes) to the database, and collection and update an additional set of data in another collection.
+ * *Enrich:* Since Stitch gives seamless access to the database and collections in context, its easy to leverage the data passed from a database event trigger to enrich other collections or documents -- producing materialized views or aggregations as data enters the database.
+ * *Integrate:* Leverage serverless functions to integrate with third party services, in this case Kinesis.
 
 ### Stitch Database Triggers
 Storing incoming data in MongoDB prior to making it available in a data stream has several advantages. First, we’re ensuring durability. Second, since we’re using MongoDB Atlas, we have the ability to leverage database triggers.
 
-Triggers in stitch differ from traditional database triggers in that they don’t consume resource in the database - they’re run separately in the Stitch application environment.  This facilitates enhanced scalability and in the world of real-time, streaming data, scale is incredibly important.
+[Triggers](https://docs.mongodb.com/stitch/mongodb/triggers/) in stitch differ from traditional database triggers in that they don’t consume resource in the database - they’re run separately in the Stitch application environment.  This facilitates enhanced scalability and in the world of real-time, streaming data, scale is incredibly important.
 
 Let’s take a closer look at a Stitch Trigger.
 
@@ -91,7 +91,8 @@ In our example, we’ll leverage the AWS Service to integrate our trigger with A
 *Figure 4. AWS Service Configuration*
 
 Once configured, the service may be accessed via calls from Stitch serverless functions. Here’s an example of a function referencing our newly configured AWS Service. 
-<pre><code class="line-numbers" data-highlight-lines="1-3,5,7,9">
+
+```javascript
 exports = function(event){
  const awsService = context.services.get('aws');
  console.log(JSON.stringify(event.fulldocument));
@@ -108,12 +109,21 @@ catch(error){
   console.log(JSON.parse(error));
 }
 };
-</pre>
+```
 *Example Stitch Function Calling AWS Kinesis Service*
 
-Note in the fo
+One of the powerful benefits of leveraging Stitch as a part of your Data Streaming architecture is that you can continue to rely on MongoDB in the very same manner your used to. Letting your application capture data and write it to MongoDB in the same manner it would normally, inserting documents into a collection in a database on MongoDB Atlas. However, since we've configured Database Triggers to take action upon each Update, Insert, or Replace we can take advantage of serverless functions without having to write the REST API wrapper code.  This can saves hours, reduce complexity and streamlines your application development process.
 
-When you leverage MongoDB Atlas and MongoDB Stitch, you our application interacts with MongoDB in the same manner it would normally, connecting, capturing user interactions and inserting documents into a collection in a database on MongoDB Atlas. Since we've configured MongoDB Stitch Database Triggers to take action upon each Update, Insert, or Replace our function will be fired when the change event occurs.
+In this case, the function leverages our pre-configured AWS Service and calls the `PutRecord` method to insert a document into a stream we've created called `stitchStream`.
+
+Once the record is in the Kinesis Stream you can configure additional services downstream to act on the data.  A common use case incorporates Amazon Data Analytics to perform analytics on the streaming data. Amazon Data Analytics offers pre-configured analytics templates to accomplish things like anomaly detection, simple alerts, aggregations and more.
+
+![Amazon Data Analytics - Anomaly Detection Example](https://i.imgur.com/rQYf1qh.png)
+*Figure 5. Amazon Data Analytics - Anomaly Detection Example*
+
+### Wrapping Up
+We've presented a discussion of MongoDB Atlas, Stitch Backend as a Service and shown how integrating with Amazon Kinesis can be accomplished to easily reduce complexity and enable you to manage high volumes and velocities of data from your applications. You can begin using MongoDB Atlas for Free and see for yourself exactly how easy it is to get started. In my next article, I'll present a bit more detail around exactly how to integrate these components to accomplish a variety of tasks.  
+
 
 
 
