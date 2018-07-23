@@ -2,7 +2,7 @@
 # MongoDB Atlas, Stitch and Amazon Kinesis
 ## Integrating MongoDB and Amazon Kinesis
 
-### Steaming Data
+### Streaming Data
 Every day, millions of people visit websites and interact with applications all across the Internet. Their virtual footprints tell a story that can be incredibly valuable. As users interact with the content clicking links, viewing products and maybe event purchasing a product, the stream of click data is compiled and sent to a log file, stored in a database or possibly added to a data stream. This is just one example of streaming data. There are many other examples, across virtually every industry. 
 
 Stream processing differs from batch processing in the speed with which you’re able to derive insight, and therefore value from the data. With batch oriented data collection and reporting, processing is performed on a periodic basis typically with gaps between execution cycles. With stream processing, streaming data is analyzed in real-time using the concept of windows into the data. 
@@ -18,10 +18,10 @@ In this article, I’ll discuss some possible use cases for stream processing, s
 Streaming solutions such as Amazon Kinesis enable you to minimize the time and cost associated with capturing and taking action on high volumes of incoming data.
 
 There are four primary products in the Kinesis family:
-  * Kinesis Data Streams: Reliably capture Click-stream, IoT, or other data at high volume and scale.
-  * Kinesis Data Analytics: Process and analyze streaming data using standard SQL.
-  * Kinesis Data Firehose: Provision, manage and scale compute, memory, and network resources required to load your streaming data.
-  * Kinesis Video Streams: Provides you SDKs you can install on your devices to make it easy and secure to stream video to AWS.
+  * *Kinesis Data Streams:* Reliably capture Click-stream, IoT, or other data at high volume and scale.
+  * *Kinesis Data Analytics:* Process and analyze streaming data using standard SQL.
+  * *Kinesis Data Firehose:* Provision, manage and scale compute, memory, and network resources required to load your streaming data.
+  * *Kinesis Video Streams:* Provides you SDKs you can install on your devices to make it easy and secure to stream video to AWS.
 
 These tools are designed to help manage the velocity and volume of incoming streaming data, giving you access and insight into a rolling, sliding or tumbling window of data from the stream as it’s produced in real-time. This contrasts with conventional data capture and storage paradigms wherein a static, point in time view of the data may be obtain using ad-hoc queries.
 
