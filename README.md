@@ -129,6 +129,17 @@ Once the record is in the Kinesis Stream you can configure additional services d
 We've presented a discussion of MongoDB Atlas, Stitch Backend as a Service and shown how integrating with Amazon Kinesis can be accomplished to easily reduce complexity and enable you to manage high volumes and velocities of data from your applications. You can begin using MongoDB Atlas for Free and see for yourself exactly how easy it is to get started. In my next article, I'll present a bit more detail around exactly how to integrate these components to accomplish a variety of tasks.  
 
 
+### Resources
+#### MongoDB Atlas
+ * [Getting Started - Tutorial Playlist](https://www.mongodb.com/presentations/tutorial-series-getting-started-with-mongodb-atlas)
+ * [FAQ](https://www.mongodb.com/cloud/atlas/faq)
+#### MongoDB Stitch
+ * [Getting Started Documentation](https://docs.mongodb.com/stitch/getting-started/)
+ * [MongoDB Stitch Tutorials](https://docs.mongodb.com/stitch/tutorials/)
+#### Amazon Kinesis
+ * [Getting Started](https://docs.aws.amazon.com/streams/latest/dev/getting-started.html)
+ * [Kinesis Data Streams](https://aws.amazon.com/kinesis/data-streams/)
+ * [Kinesis Data Analytics](https://aws.amazon.com/kinesis/data-analytics/)
 
 
 
