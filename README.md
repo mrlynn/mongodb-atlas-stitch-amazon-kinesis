@@ -2,7 +2,7 @@
 # MongoDB Atlas, Stitch and Amazon Kinesis
 ## Integrating MongoDB and Amazon Kinesis
 
-### Streaming Data
+### Stream Processing
 Every day, millions of people visit websites and interact with applications all across the Internet. Their virtual footprints tell a story that can be incredibly valuable. As users interact with the content clicking links, viewing products and maybe event purchasing a product, the stream of click data is compiled and sent to a log file, stored in a database or possibly added to a data stream. This is just one example of streaming data. There are many other examples, across virtually every industry. 
 
 Stream processing differs from batch processing in the speed with which you’re able to derive insight, and therefore value from the data. With batch oriented data collection and reporting, processing is performed on a periodic basis typically with gaps between execution cycles. With stream processing, streaming data is analyzed in real-time using the concept of windows into the data. 
