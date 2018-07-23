@@ -2,12 +2,12 @@
 # MongoDB Atlas, Stitch and Amazon Kinesis
 ## Integrating MongoDB and Amazon Kinesis
 
-### Stream Processing
-Every day, millions of people visit websites and interact with applications all across the Internet. Their virtual footprints tell a story that can be incredibly valuable. As users interact with the content clicking links, viewing products and maybe event purchasing a product, the stream of click data is compiled and sent to a log file, stored in a database or possibly added to a data stream. This is just one example of streaming data. There are many other examples, across virtually every industry. 
+### Steaming Data
+Every day, millions of people visit websites and interact with applications all across the Internet. Their virtual footprints tell a story that can be incredibly valuable. As users interact with the content clicking links, viewing products and maybe even purchasing a product, the stream of click data is compiled and sent to a log file, stored in a database or possibly added to a data stream. This is just one example of streaming data. There are many other examples, across virtually every industry. 
 
 Stream processing differs from batch processing in the speed with which you’re able to derive insight, and therefore value from the data. With batch oriented data collection and reporting, processing is performed on a periodic basis typically with gaps between execution cycles. With stream processing, streaming data is analyzed in real-time using the concept of windows into the data. 
 
-More and more businesses are leveraging modern tools to analyze streaming data in real-time rather than having to wait for the data to settle into batches.  This is because over time, the insights become stale and lose value.  Consider the example of streaming transactions in a credit card processing use case.  The value of analyzing the data and detecting anomalies is extremely high within seconds, and minutes of the event whereas, in several days, there’s likely virtually zero value in that specific data.
+More and more businesses are leveraging modern tools to analyze streaming data in real-time rather than having to wait for the data to settle into batches.  This is because over time, the insights become stale and lose value.  Consider the use case example of streaming transactions in a credit card processing.  The value of analyzing the data and detecting anomalies is extremely high within seconds, and minutes of the event whereas, in several days, there’s likely virtually zero value in that specific data.
 
 ![Value of Data Over Time](https://i.imgur.com/K21Vrl1.png "Figure 1. Value of Data Over Time")
 *Figure 1. Value of Data Over Time*
@@ -18,10 +18,10 @@ In this article, I’ll discuss some possible use cases for stream processing, s
 Streaming solutions such as Amazon Kinesis enable you to minimize the time and cost associated with capturing and taking action on high volumes of incoming data.
 
 There are four primary products in the Kinesis family:
-  * *Kinesis Data Streams:* Reliably capture Click-stream, IoT, or other data at high volume and scale.
-  * *Kinesis Data Analytics:* Process and analyze streaming data using standard SQL.
-  * *Kinesis Data Firehose:* Provision, manage and scale compute, memory, and network resources required to load your streaming data.
-  * *Kinesis Video Streams:* Provides you SDKs you can install on your devices to make it easy and secure to stream video to AWS.
+  * Kinesis Data Streams: Reliably capture Click-stream, IoT, or other data at high volume and scale.
+  * Kinesis Data Analytics: Process and analyze streaming data using standard SQL.
+  * Kinesis Data Firehose: Provision, manage and scale compute, memory, and network resources required to load your streaming data.
+  * Kinesis Video Streams: Provides you SDKs you can install on your devices to make it easy and secure to stream video to AWS.
 
 These tools are designed to help manage the velocity and volume of incoming streaming data, giving you access and insight into a rolling, sliding or tumbling window of data from the stream as it’s produced in real-time. This contrasts with conventional data capture and storage paradigms wherein a static, point in time view of the data may be obtain using ad-hoc queries.
 
@@ -29,7 +29,7 @@ So then, what if your use case requires management of a high volume of incoming 
 
 ### MongoDB Atlas and Stitch
 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
- provides all of the features and benefits of MongoDB, without the operational overhead required when you run MongoDB on your own. MongoDB Atlas is available on demand through and billed on an hourly basis, letting you focus on the high value tasks associated with developing and deploying applications rather than managing and operating the database.
+ provides all of the features and benefits of MongoDB, without the operational overhead required when you run MongoDB on your own. MongoDB Atlas is available on demand and billed on an hourly basis, letting you focus on the high value tasks associated with developing and deploying applications rather than managing and operating the database.
 
 It’s easy to get started. Simply select the instance size, region, and features that meet your application requirements and within minutes your cluster environment is up and running and ready to be connected to your application.
 
@@ -62,7 +62,7 @@ MongoDB Stitch, the serverless platform is built into MongoDB Atlas and enables 
 ### Stitch Database Triggers
 Storing incoming data in MongoDB prior to making it available in a data stream has several advantages. First, we’re ensuring durability. Second, since we’re using MongoDB Atlas, we have the ability to leverage database triggers.
 
-[Triggers](https://docs.mongodb.com/stitch/mongodb/triggers/) in stitch differ from traditional database triggers in that they don’t consume resource in the database - they’re run separately in the Stitch application environment.  This facilitates enhanced scalability and in the world of real-time, streaming data, scale is incredibly important.
+[Triggers](https://docs.mongodb.com/stitch/mongodb/triggers/) in Stitch differ from traditional database triggers in that they don’t consume resource in the database - they’re run separately in the Stitch application environment.  This facilitates enhanced scalability. In the world of real-time, streaming data, scale is incredibly important.
 
 Let’s take a closer look at a Stitch Trigger.
 
@@ -70,11 +70,11 @@ Let’s take a closer look at a Stitch Trigger.
 *Figure 3. Stitch Trigger Configuration*
 
 The key elements of configuration for a Database Trigger in Stitch include the following:
- * *Name:* This is the name of the function - arbitrary. You’ll call this from code if you’re leverage the SDK from a Stitch enabled App.
+ * *Name:* This is the name of the function - arbitrary. You’ll call this from code if you’re leveraging the SDK from a Stitch enabled App.
  * *Database:*  The name of the database where you’re monitoring for actions to initiate a trigger.
  * *Collection:* The name of the collection where you’re monitoring for actions.
  * *Operations Triggered:*  The actions you’re monitoring. This includes Inserts, Updates, Deletes, and Replace operations. These are also referred to as Events, or Event Types.
- * *Full Document Response:* Optional configuration that tells Stitch to response to the triggered event by sending the entire document impacted by the operation (insert, replace, etc.)  This is handy if you want to enrich another collection as a result of the trigger.
+ * *Full Document Response:* Optional configuration that tells Stitch to respond to the triggered event by sending the entire document impacted by the operation (insert, replace, etc.)  This is handy if you want to enrich another collection as a result of the trigger.
  * *Function Name:* The name of the Stitch function that will be called when the operation or action is triggered.
 
 
@@ -116,7 +116,7 @@ catch(error){
 ```
 *Example Stitch Function Calling AWS Kinesis Service*
 
-One of the powerful benefits of leveraging Stitch as a part of your Data Streaming architecture is that you can continue to rely on MongoDB in the very same manner your used to. Letting your application capture data and write it to MongoDB in the same manner it would normally, inserting documents into a collection in a database on MongoDB Atlas. However, since we've configured Database Triggers to take action upon each Update, Insert, or Replace we can take advantage of serverless functions without having to write the REST API wrapper code.  This can saves hours, reduce complexity and streamlines your application development process.
+One of the powerful benefits of leveraging Stitch as a part of your Data Streaming architecture is that you can continue to rely on MongoDB in the very same manner you're used to. Letting your application capture data and write it to MongoDB in the same manner it would normally, inserting documents into a collection in a database on MongoDB Atlas. However, since we've configured Database Triggers to take action upon each Update, Insert, or Replace we can take advantage of serverless functions without having to write the REST API wrapper code.  This can save hours, reduce complexity, and streamlines your application development process.
 
 In this case, the function leverages our pre-configured AWS Service and calls the `PutRecord` method to insert a document into a stream we've created called `stitchStream`.
 
@@ -126,20 +126,9 @@ Once the record is in the Kinesis Stream you can configure additional services d
 *Figure 5. Amazon Data Analytics - Anomaly Detection Example*
 
 ### Wrapping Up
-We've presented a discussion of MongoDB Atlas, Stitch Backend as a Service and shown how integrating with Amazon Kinesis can be accomplished to easily reduce complexity and enable you to manage high volumes and velocities of data from your applications. You can begin using MongoDB Atlas for Free and see for yourself exactly how easy it is to get started. In my next article, I'll present a bit more detail around exactly how to integrate these components to accomplish a variety of tasks.  
+We've presented a discussion of MongoDB Atlas, Stitch Backend as a Service, and shown how integrating with Amazon Kinesis can be accomplished to easily reduce complexity and enable you to manage high volumes and velocities of data from your applications. You can begin using MongoDB Atlas for **free** and see for yourself exactly how easy it is to get started. In my next article, I'll present a bit more detail around exactly how to integrate these components to accomplish a variety of tasks.  
 
 
-### Resources
-#### MongoDB Atlas
- * [Getting Started - Tutorial Playlist](https://www.mongodb.com/presentations/tutorial-series-getting-started-with-mongodb-atlas)
- * [FAQ](https://www.mongodb.com/cloud/atlas/faq)
-#### MongoDB Stitch
- * [Getting Started Documentation](https://docs.mongodb.com/stitch/getting-started/)
- * [MongoDB Stitch Tutorials](https://docs.mongodb.com/stitch/tutorials/)
-#### Amazon Kinesis
- * [Getting Started](https://docs.aws.amazon.com/streams/latest/dev/getting-started.html)
- * [Kinesis Data Streams](https://aws.amazon.com/kinesis/data-streams/)
- * [Kinesis Data Analytics](https://aws.amazon.com/kinesis/data-analytics/)
 
 
 
